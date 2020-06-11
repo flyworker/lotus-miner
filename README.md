@@ -25,7 +25,7 @@
 将会安装挖矿程序、必要的库、时间校准、显卡驱动、ulimit、swap内存（64 GB）。
 ```
 # 下载
-git clone https://github.com/shannon-6block/lotus-miner.git
+git clone https://github.com/flyworker/lotus-miner
 cd lotus-miner
 
 # 切换至root账户
