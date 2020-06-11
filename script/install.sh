@@ -6,8 +6,8 @@ apt update
 apt install -y mesa-opencl-icd ocl-icd-opencl-dev ntpdate ubuntu-drivers-common
 
 # time adjust
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-ntpdate ntp.aliyun.com
+#ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+#ntpdate ntp.aliyun.com
 
 # install GPU driver
 nvidia-smi
