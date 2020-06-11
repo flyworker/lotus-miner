@@ -54,7 +54,7 @@ lotus fetch-params --proving-params 32GiB
 启动lotus。
 ```
 # 启动lotus
-nohup lotus > ~/lotus.log 2>&1 &
+nohup lotus daemon> ~/lotus.log 2>&1 &
 
 # 查看日志
 tail -f ~/lotus.log
@@ -80,7 +80,7 @@ vi ~/.lotusstorage/config.toml
 # --max-parallel表示每个worker允许并行的sector数量。
 # 当有 256 GB 内存、64 GB swap 和 1.4 TB 硬盘空闲空间的情况下，可以并行2个sector。
 # 当有 128 GB 内存、64 GB swap 和 0.7 TB 硬盘空闲空间的情况下，可以并行1个sector。
-nohup lotus-storage-miner run --max-parallel 2 > ~/miner.log 2>&1 &
+nohup lotus-storage-miner run > ~/miner.log 2>&1 &
 
 # 查看日志
 tail -f ~/miner.log
