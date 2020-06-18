@@ -117,6 +117,7 @@ lotus-storage-miner info
 lotus-storage-miner storage list
 lotus-storage-miner workers list
 lotus-storage-miner sectors list
+lotus-storage-miner sectors status -log 0
 ```
 
 # TODO
