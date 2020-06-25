@@ -15,11 +15,14 @@
 * 操作系统：Linux
 
 # 特点
-* 首次启动之后，以后所有操作自动化，无需人工干预。
-* 封装操作完全在worker完成，除了最终sealed sector（约33 GB）回传miner之外没有网络传输。
-* 自动发现空闲worker，启动封装操作。
-* 程序退出后，再次启动都能恢复运行。如果出现不能恢复的情况，可以提issue。
-* 基于推荐配置，可以进行单机2个sector的并行运行，每日产出存力200 GB以上。
+
+    首次启动之后，以后所有操作自动化，无需人工干预。
+    封装操作完全在worker完成，除了最终sealed sector（约33 GB）回传miner之外没有网络传输。
+    自动发现空闲worker，启动封装操作。
+    程序退出后，再次启动都能恢复运行。如果出现不能恢复的情况，可以提issue。
+    基于推荐配置，可以进行单机2个sector的并行运行，每日产出存力200 GB以上。
+    自动设置FIL_PROOFS_MAXIMIZE_CACHING环境变量。
+    默认不使用LOTUS_STORAGE_PATH来存储文件，分离目录。
 
 # 安装配置
 将会安装挖矿程序、必要的库、时间校准、显卡驱动、ulimit、swap内存（64 GB）。
@@ -53,6 +56,10 @@ lotus fetch-params --proving-params 32GiB
 
 启动lotus。
 ```
+# 确定版本
+lotus -v
+lotus version 0.4.17+git.045440aa
+
 # 启动lotus
 nohup lotus daemon> ~/lotus.log 2>&1 &
 
@@ -102,14 +109,23 @@ export FIL_PROOFS_MAXIMIZE_CACHING=1
 # 可选的环境变量
 # 如下设置会让worker使用GPU计算PreCommit2。建议双显卡的情况下再使用，否则会报显存不够的错误。
 export FIL_PROOFS_USE_GPU_COLUMN_BUILDER=1
+export FIL_PROOFS_USE_GPU_TREE_BUILDER=1
+
 # 如下设置会让worker不使用GPU计算Commit2，而改用CPU。
 export BELLMAN_NO_GPU=true
+
+# 以下设置将会让worker显示更详细的日志
+export RUST_BACKTRACE=full
+export RUST_LOG=debug
 
 # 启动worker，需要加入局域网IP
 lotus-seal-worker run --address=xxx.xxx.xxx.xxx:3456 > ~/worker.log 2>&1 &
 # 查看日志
 tail -f ~/miner.log
 ```
+进阶：worker使用多个SSD
+
+lotus-seal-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/ssd/directory > ~/worker.log 2>&1 &
 
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
