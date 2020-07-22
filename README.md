@@ -27,9 +27,21 @@
 # 安装配置
 将会安装挖矿程序、必要的库、时间校准、显卡驱动、ulimit、swap内存（64 GB）。
 ```
+
+sudo apt update
+sudo apt install mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl
+sudo apt upgrade
+sudo add-apt-repository ppa:longsleep/golang-backports
+sudo apt update
+sudo apt install golang-go
+```
+
 # 下载
-git clone https://github.com/flyworker/lotus-miner
-cd lotus-miner
+```
+https://docs.lotu.sh/en+install-lotus-ubuntu
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
 
 # 切换至root账户
 sudo su
