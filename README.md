@@ -88,7 +88,7 @@ lotus sync wait
 ```
 # 使用矿工注册结果来初始化miner
 # 建议如下所示加上--no-local-storage参数，不用默认位置LOTUS_STORAGE_PATH存数据
-lotus-storage-miner init --actor=xxx --owner=xxxxx --no-local-storage
+lotu-miner init --actor=xxx --owner=xxxxx --no-local-storage
 
 # 如果miner和worker不在一台机器，需要配置miner的IP
 # 取消ListenAddress和RemoteListenAddress前面的注释，并将它们的IP改成局域网IP
@@ -98,16 +98,16 @@ vi ~/.lotusstorage/config.toml
 # --max-parallel表示每个worker允许并行的sector数量。
 # 当有 256 GB 内存、64 GB swap 和 1.4 TB 硬盘空闲空间的情况下，可以并行2个sector。
 # 当有 128 GB 内存、64 GB swap 和 0.7 TB 硬盘空闲空间的情况下，可以并行1个sector。
-nohup lotus-storage-miner run > ~/miner.log 2>&1 &
+nohup lotus-miner run > ~/miner.log 2>&1 &
 
 # 查看日志
 tail -f ~/miner.log
 
 # storage attach，即告诉miner真正存储数据的地方。请选择机械硬盘或网盘下的目录
-lotus-storage-miner storage attach --init=true --store=true /path/to/storage
+lotus-miner storage attach --init=true --store=true /path/to/storage
 
 # 查看miner信息
-lotus-storage-miner info
+lotus-miner info
 ```
 
 启动worker。
@@ -140,11 +140,11 @@ lotus-seal-worker run --address xxx.xxx.xxx.xxx:3456 --attach /path/to/another/s
 
 观察运行情况。在miner机器执行。常用命令列举如下。
 ```
-lotus-storage-miner info
-lotus-storage-miner storage list
-lotus-storage-miner workers list
-lotus-storage-miner sectors list
-lotus-storage-miner sectors status -log 0
+lotus-miner info
+lotus-miner storage list
+lotus-miner workers list
+lotus-miner sealing workers
+lotus-miner sectors status -log 0
 ```
 
 # TODO
